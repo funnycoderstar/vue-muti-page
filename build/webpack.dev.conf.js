@@ -7,6 +7,12 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const pages = require('../config/pages');
+const htmlPlugins = pages.map(page => new HtmlWebpackPlugin(page));
+
+// Object.keys(baseWebpackConfig.entry).forEach((name) => {
+//     baseWebpackConfig.entry[name] = ['react-hot-loader/patch', './build/dev-client'].concat(baseWebpackConfig.entry[name]);
+// });
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -45,11 +51,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
-    }),
+    // new HtmlWebpackPlugin({
+    //   title:'我来自参数',
+    //   filename: 'index.html',
+    //   template: 'index.html',
+    //   inject: true
+    // }),
+    ...htmlPlugins,
   ]
 })
 
