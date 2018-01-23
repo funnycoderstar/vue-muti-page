@@ -9,7 +9,6 @@ const entry = {};
 pages.forEach((page) => {
     entry[page.entry.key] = page.entry.file;
 });
-console.log(entry);
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
