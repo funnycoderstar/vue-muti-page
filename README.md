@@ -110,6 +110,7 @@ const htmlPlugins = pages.map(page => new HtmlWebpackPlugin(page));
 
 ```
 http://localhost:7000 访问默认页面
+http://localhost:7000/entry.html 访问引导页面
 http://localhost:7000/c.html 访问c站
 http://localhost:7000/m.html 访问m站
 ```
