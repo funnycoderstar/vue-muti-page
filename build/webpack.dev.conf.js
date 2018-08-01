@@ -1,4 +1,5 @@
 'use strict'
+const path = require('path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
@@ -8,8 +9,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 const pages = require('../config/pages');
-const htmlPlugins = pages.map(page => new HtmlWebpackPlugin(page));
-
+let htmlPlugins = pages.map(page => new HtmlWebpackPlugin(page));
+htmlPlugins.push(new HtmlWebpackPlugin({
+  title: '入口',
+  filename: 'entry.html',
+  template: path.resolve(__dirname, '../src/templates/entry.html'),
+  inject: false,
+},))
 // Object.keys(baseWebpackConfig.entry).forEach((name) => {
 //     baseWebpackConfig.entry[name] = ['react-hot-loader/patch', './build/dev-client'].concat(baseWebpackConfig.entry[name]);
 // });
@@ -75,7 +81,7 @@ module.exports = new Promise((resolve, reject) => {
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}/entry.html`],
         },
         onErrors: config.dev.notifyOnErrors
         ? utils.createNotifierCallback()
