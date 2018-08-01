@@ -105,6 +105,17 @@ const htmlPlugins = pages.map(page => new HtmlWebpackPlugin(page));
     ]
 })
 ```
+修改 webpack.dev.conf.js 添加引导页面
+```js
+let htmlPlugins = pages.map(page => new HtmlWebpackPlugin(page));
+htmlPlugins.push(new HtmlWebpackPlugin({
+  title: '入口',
+  filename: 'entry.html',
+  template: path.resolve(__dirname, '../src/templates/entry.html'),
+  inject: false,
+},))
+
+```
 
 执行 npm run dev
 
