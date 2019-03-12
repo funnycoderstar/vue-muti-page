@@ -15,7 +15,7 @@ const pages = {
     },
  
 }
-if(process.env.NODE_ENV !== 'production') {
+if(process.env.NODE_ENV === 'development') {
     pages.index  = {
         entry: 'src/main.js',
         template: 'src/entry.html',
