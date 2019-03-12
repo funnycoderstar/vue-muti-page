@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    哈哈哈， 这是PC站
+    哈哈哈， 这是M站
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
