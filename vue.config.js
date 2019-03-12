@@ -24,7 +24,12 @@ if(process.env.NODE_ENV === 'development') {
 }
 module.exports = {
     devServer: {
-        port: '3100'
+        port: '3100',
+        historyApiFallback: {
+            rewrites: [
+                { from: /^.*$/, to: '/pc.html' },
+              ]
+        }
     },
     pages: pages,
 }
